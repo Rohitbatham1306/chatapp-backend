@@ -19,6 +19,8 @@ import { Message } from "../models/message.js";
 const newGroupChat = TryCatch(async (req, res, next) => {
   const { name, members } = req.body;
 
+
+
   const allMembers = [...members, req.user];
 
   await Chat.create({
@@ -34,6 +36,7 @@ const newGroupChat = TryCatch(async (req, res, next) => {
   return res.status(201).json({
     success: true,
     message: "Group Created",
+    
   });
 });
 

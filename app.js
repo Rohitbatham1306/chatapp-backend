@@ -25,6 +25,7 @@ import { socketAuthenticator } from "./middlewares/auth.js";
 import userRoute from "./routes/user.js";
 import chatRoute from "./routes/chat.js";
 import adminRoute from "./routes/admin.js";
+//import { createUser } from "./seeders/user.js";
 
 dotenv.config({
   path: "./.env",
@@ -38,6 +39,7 @@ const userSocketIDs = new Map();
 const onlineUsers = new Set();
 
 connectDB(mongoURI);
+//createUser(5)
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -63,7 +65,7 @@ app.use("/api/v1/chat", chatRoute);
 app.use("/api/v1/admin", adminRoute);
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Hello World rohit ");
 });
 
 io.use((socket, next) => {
@@ -144,7 +146,11 @@ io.on("connection", (socket) => {
 app.use(errorMiddleware);
 
 server.listen(port, () => {
-  console.log(`Server is running on port ${port} in ${envMode} Mode`);
+   console.log(`Server is running on port ${port} in ${envMode} Mode`);
+  //console.log(`Server is running on port ${port} `);
+  
 });
 
-export { envMode, adminSecretKey, userSocketIDs };
+ export { envMode, adminSecretKey, userSocketIDs };
+//export {  adminSecretKey, userSocketIDs };
+
